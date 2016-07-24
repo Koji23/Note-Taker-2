@@ -5,6 +5,7 @@ const NoteList = (props) => {
   return (
     <div>
       <h1>NoteList</h1>
+      <div>{props.route.msg}</div>
       <Nav />
     </div>
   );

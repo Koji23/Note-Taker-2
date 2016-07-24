@@ -4,6 +4,7 @@ import {Router, Route, IndexRoute, Link, hashHistory, browserHistory} from 'reac
 import NoteList from './NoteList.js';
 import {LoginForm, SignupForm} from './User';
 import {Home, About, Contact} from './Home';
+import NoteMaker from './NoteMaker';
 
 
 class App extends React.Component {
@@ -17,13 +18,15 @@ class App extends React.Component {
       <main>
         <Router history={browserHistory}>
           <Route path="/" component={Home}>
-            <IndexRoute component={About}></IndexRoute>
+            <Route path="about" component={About}></Route>
             <Route path="contact" component={Contact} ></Route>
           </Route>
-          <Route path="login" component={LoginForm}>
+          <Route path="login" component={LoginForm} />
+          <Route component={LoginForm}>
             <Route path="signup" component={SignupForm}/>
           </Route>
-          <Route path="notelist" component={NoteList}></Route>
+          <Route path="notelist" component={NoteList} msg="HIiiII"></Route>
+          <Route path="notemaker" component={NoteMaker}></Route>
         </Router>
       </main>
     );

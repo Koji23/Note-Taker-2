@@ -22,7 +22,7 @@ let UserFormMixin =  InnerComponent => class extends React.Component {
   }
 }
 
-//define a "login" inner-component
+//define a "login" inner-component. include a link to signup
 class Login extends React.Component {
   constructor (props) {
     super(props);
@@ -41,7 +41,7 @@ class Login extends React.Component {
             <input onClick={(event) => this.submitUser(event)} type="submit" value="Submit" />
           </fieldset>
         </form>
-        <Link to="login/signup" >Signup</Link>
+        <Link to="signup" activeStyle={{color:'green'}}>Signup</Link>
         {this.props.children}
       </div>
     );

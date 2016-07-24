@@ -21120,9 +21120,13 @@
 
 	var _NoteList2 = _interopRequireDefault(_NoteList);
 
-	var _User = __webpack_require__(241);
+	var _User = __webpack_require__(238);
 
 	var _Home = __webpack_require__(239);
+
+	var _NoteMaker = __webpack_require__(240);
+
+	var _NoteMaker2 = _interopRequireDefault(_NoteMaker);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21156,15 +21160,17 @@
 	          _react2.default.createElement(
 	            _reactRouter.Route,
 	            { path: '/', component: _Home.Home },
-	            _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home.About }),
+	            _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _Home.About }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'contact', component: _Home.Contact })
 	          ),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _User.LoginForm }),
 	          _react2.default.createElement(
 	            _reactRouter.Route,
-	            { path: 'login', component: _User.LoginForm },
+	            { component: _User.LoginForm },
 	            _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _User.SignupForm })
 	          ),
-	          _react2.default.createElement(_reactRouter.Route, { path: 'notelist', component: _NoteList2.default })
+	          _react2.default.createElement(_reactRouter.Route, { path: 'notelist', component: _NoteList2.default, msg: 'HIiiII' }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'notemaker', component: _NoteMaker2.default })
 	        )
 	      );
 	    }
@@ -26821,6 +26827,11 @@
 	      null,
 	      'NoteList'
 	    ),
+	    _react2.default.createElement(
+	      'div',
+	      null,
+	      props.route.msg
+	    ),
 	    _react2.default.createElement(_Navs.Nav, null)
 	  );
 	};
@@ -26871,6 +26882,11 @@
 	      _reactRouter.Link,
 	      { to: '/notelist', activeStyle: activeStyles, style: styles },
 	      'Notelist'
+	    ),
+	    _react2.default.createElement(
+	      _reactRouter.Link,
+	      { to: '/notemaker', activeStyle: activeStyles, style: styles },
+	      'NoteMaker'
 	    )
 	  );
 	};
@@ -26887,7 +26903,7 @@
 	    _react2.default.createElement(
 	      _reactRouter.Link,
 	      { to: '/contact', activeStyle: activeStyles, style: styles },
-	      'contact'
+	      'Contact'
 	    )
 	  );
 	};
@@ -26896,71 +26912,7 @@
 	exports.HomeNav = HomeNav;
 
 /***/ },
-/* 238 */,
-/* 239 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.Contact = exports.About = exports.Home = undefined;
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Navs = __webpack_require__(237);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Home = function Home(props) {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'h1',
-	      null,
-	      'Home'
-	    ),
-	    _react2.default.createElement(_Navs.Nav, null),
-	    _react2.default.createElement(_Navs.HomeNav, null),
-	    props.children
-	  );
-	};
-
-	var About = function About(props) {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'h1',
-	      null,
-	      'About'
-	    )
-	  );
-	};
-
-	var Contact = function Contact(props) {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'h1',
-	      null,
-	      'Contact'
-	    )
-	  );
-	};
-
-	exports.Home = Home;
-	exports.About = About;
-	exports.Contact = Contact;
-
-/***/ },
-/* 240 */,
-/* 241 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27026,7 +26978,7 @@
 	  }(_react2.default.Component);
 	};
 
-	//define a "login" inner-component
+	//define a "login" inner-component. include a link to signup
 
 	var Login = function (_React$Component2) {
 	  _inherits(Login, _React$Component2);
@@ -27073,7 +27025,7 @@
 	        ),
 	        _react2.default.createElement(
 	          _reactRouter.Link,
-	          { to: 'login/signup' },
+	          { to: 'signup', activeStyle: { color: 'green' } },
 	          'Signup'
 	        ),
 	        this.props.children
@@ -27140,6 +27092,129 @@
 
 	exports.LoginForm = LoginForm;
 	exports.SignupForm = SignupForm;
+
+/***/ },
+/* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.Contact = exports.About = exports.Home = undefined;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Navs = __webpack_require__(237);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Home = function Home(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'h1',
+	      null,
+	      'Home'
+	    ),
+	    _react2.default.createElement(_Navs.Nav, null),
+	    _react2.default.createElement(_Navs.HomeNav, null),
+	    props.children
+	  );
+	};
+
+	var About = function About(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'h1',
+	      null,
+	      'About'
+	    )
+	  );
+	};
+
+	var Contact = function Contact(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'h1',
+	      null,
+	      'Contact'
+	    )
+	  );
+	};
+
+	exports.Home = Home;
+	exports.About = About;
+	exports.Contact = Contact;
+
+/***/ },
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Navs = __webpack_require__(237);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var NoteMaker = function (_React$Component) {
+	  _inherits(NoteMaker, _React$Component);
+
+	  function NoteMaker(props) {
+	    _classCallCheck(this, NoteMaker);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(NoteMaker).call(this, props));
+	  }
+
+	  _createClass(NoteMaker, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Note Maker'
+	        ),
+	        _react2.default.createElement(_Navs.Nav, null),
+	        _react2.default.createElement(
+	          'button',
+	          null,
+	          'Send Note'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return NoteMaker;
+	}(_react2.default.Component);
+
+	exports.default = NoteMaker;
 
 /***/ }
 /******/ ]);
