@@ -21120,9 +21120,7 @@
 
 	var _NoteList2 = _interopRequireDefault(_NoteList);
 
-	var _Login = __webpack_require__(240);
-
-	var _Login2 = _interopRequireDefault(_Login);
+	var _User = __webpack_require__(241);
 
 	var _Home = __webpack_require__(239);
 
@@ -21161,7 +21159,11 @@
 	            _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home.About }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'contact', component: _Home.Contact })
 	          ),
-	          _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _Login2.default }),
+	          _react2.default.createElement(
+	            _reactRouter.Route,
+	            { path: 'login', component: _User.LoginForm },
+	            _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _User.SignupForm })
+	          ),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'notelist', component: _NoteList2.default })
 	        )
 	      );
@@ -26862,8 +26864,8 @@
 	    ),
 	    _react2.default.createElement(
 	      _reactRouter.Link,
-	      { to: '/signup', activeStyle: activeStyles, style: styles },
-	      'Signup'
+	      { to: '/login', activeStyle: activeStyles, style: styles },
+	      'Login'
 	    ),
 	    _react2.default.createElement(
 	      _reactRouter.Link,
@@ -26957,7 +26959,8 @@
 	exports.Contact = Contact;
 
 /***/ },
-/* 240 */
+/* 240 */,
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26965,6 +26968,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.SignupForm = exports.LoginForm = undefined;
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -26979,6 +26983,8 @@
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
 	var _Navs = __webpack_require__(237);
+
+	var _reactRouter = __webpack_require__(173);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27037,29 +27043,40 @@
 	      var _this3 = this;
 
 	      return _react2.default.createElement(
-	        'form',
+	        'div',
 	        null,
+	        _react2.default.createElement(_Navs.Nav, null),
 	        _react2.default.createElement(
-	          'fieldset',
+	          'form',
 	          null,
 	          _react2.default.createElement(
-	            'legend',
+	            'fieldset',
 	            null,
-	            'Login'
-	          ),
-	          'Username:',
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('input', { ref: 'username', onChange: this.props.updateSignup, type: 'text' }),
-	          _react2.default.createElement('br', null),
-	          'Password:',
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('input', { ref: 'password', onChange: this.props.updateSignup, type: 'password', name: 'password' }),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('input', { onClick: function onClick(event) {
-	              return _this3.submitUser(event);
-	            }, type: 'submit', value: 'Submit' })
-	        )
+	            _react2.default.createElement(
+	              'legend',
+	              null,
+	              'Login'
+	            ),
+	            'Username:',
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement('input', { ref: 'username', onChange: this.props.updateSignup, type: 'text' }),
+	            _react2.default.createElement('br', null),
+	            'Password:',
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement('input', { ref: 'password', onChange: this.props.updateSignup, type: 'password', name: 'password' }),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement('input', { onClick: function onClick(event) {
+	                return _this3.submitUser(event);
+	              }, type: 'submit', value: 'Submit' })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: 'login/signup' },
+	          'Signup'
+	        ),
+	        this.props.children
 	      );
 	    }
 	  }]);
@@ -27115,45 +27132,14 @@
 	  return Signup;
 	}(_react2.default.Component);
 
-	//enable shared functionality on both inner-components
+	//create two new "higher-order components" using the mixin-like function
 
 
 	var LoginForm = UserFormMixin(Login);
 	var SignupForm = UserFormMixin(Signup);
 
-	//render both components on an outer "wrapper" component
-
-	var UserWrapper = function (_React$Component4) {
-	  _inherits(UserWrapper, _React$Component4);
-
-	  function UserWrapper(props) {
-	    _classCallCheck(this, UserWrapper);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(UserWrapper).call(this, props));
-	  }
-
-	  _createClass(UserWrapper, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'Login'
-	        ),
-	        _react2.default.createElement(_Navs.Nav, null),
-	        _react2.default.createElement(LoginForm, null),
-	        _react2.default.createElement(SignupForm, null)
-	      );
-	    }
-	  }]);
-
-	  return UserWrapper;
-	}(_react2.default.Component);
-
-	exports.default = UserWrapper;
+	exports.LoginForm = LoginForm;
+	exports.SignupForm = SignupForm;
 
 /***/ }
 /******/ ]);

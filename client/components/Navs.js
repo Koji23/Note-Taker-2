@@ -13,7 +13,7 @@ const Nav = (props) => {
   return (
     <nav >
       <Link to="/" activeStyle={activeStyles} style={styles}>Home</Link>
-      <Link to="/signup" activeStyle={activeStyles} style={styles}>Signup</Link>
+      <Link to="/login" activeStyle={activeStyles} style={styles}>Login</Link>
       <Link to="/notelist" activeStyle={activeStyles} style={styles}>Notelist</Link>
     </nav>
   );

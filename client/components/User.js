@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Nav} from './Navs';
+import {Link} from 'react-router';
+
 
 //define a mixin-like function to house user submit functionality
 let UserFormMixin =  InnerComponent => class extends React.Component {
@@ -27,16 +29,21 @@ class Login extends React.Component {
   }
   render () {
     return (
-      <form>
-        <fieldset>
-          <legend>Login</legend>
-          Username:<br/>
-          <input ref="username" onChange={this.props.updateSignup} type="text" /><br/>
-          Password:<br/>
-          <input ref="password" onChange={this.props.updateSignup} type="password" name="password"/><br/><br/>
-          <input onClick={(event) => this.submitUser(event)} type="submit" value="Submit" />
-        </fieldset>
-      </form>
+      <div>
+        <Nav />
+        <form>
+          <fieldset>
+            <legend>Login</legend>
+            Username:<br/>
+            <input ref="username" onChange={this.props.updateSignup} type="text" /><br/>
+            Password:<br/>
+            <input ref="password" onChange={this.props.updateSignup} type="password" name="password"/><br/><br/>
+            <input onClick={(event) => this.submitUser(event)} type="submit" value="Submit" />
+          </fieldset>
+        </form>
+        <Link to="login/signup" >Signup</Link>
+        {this.props.children}
+      </div>
     );
   }
 }
@@ -62,29 +69,13 @@ class Signup extends React.Component {
   }
 }
 
-//enable shared functionality on both inner-components
+//create two new "higher-order components" using the mixin-like function
 let LoginForm = UserFormMixin(Login);
 let SignupForm = UserFormMixin(Signup);
 
-//render both components on an outer "wrapper" component
-class UserWrapper extends React.Component {
-  constructor (props) {
-    super(props);
-  }
 
-  render () {
-    return (
-      <div>
-        <h1>Login</h1>
-        <Nav />
-        <LoginForm/>
-        <SignupForm/>
-      </div>
-    );
-  }
-}
 
-export default UserWrapper;
+export  {LoginForm, SignupForm};
 
 
 
