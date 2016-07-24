@@ -1,28 +1,35 @@
 import React from 'react';
-import {Router, Route, Link, hashHistory, browserHistory} from 'react-router';
+import ReactDOM from 'react-dom';
+import {Router, Route, IndexRoute, Link, hashHistory, browserHistory} from 'react-router';
 import NoteList from './NoteList.js';
-import Signup from './Signup';
+import UserWrapper from './Login';
 import {Home, About, Contact} from './Home';
 
 
 class App extends React.Component {
   constructor (props) {
     super(props);
+    this.state = {};
   }
+
   render () {
     return (
       <main>
         <Router history={browserHistory}>
           <Route path="/" component={Home}>
-            <Route path="about" component={About}/>
-            <Route path="contact" component={Contact}/>
+            <IndexRoute component={About}></IndexRoute>
+            <Route path="contact" component={Contact} ></Route>
           </Route>
-          <Route path="signup" component={Signup}></Route>
+          <Route path="signup" component={UserWrapper}></Route>
           <Route path="notelist" component={NoteList}></Route>
         </Router>
       </main>
     );
   }
+}
+
+App.propTypes = {
+
 }
 
 export default App;

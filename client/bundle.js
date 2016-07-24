@@ -21110,15 +21110,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactDom = __webpack_require__(33);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
 	var _reactRouter = __webpack_require__(173);
 
 	var _NoteList = __webpack_require__(236);
 
 	var _NoteList2 = _interopRequireDefault(_NoteList);
 
-	var _Signup = __webpack_require__(238);
+	var _Login = __webpack_require__(240);
 
-	var _Signup2 = _interopRequireDefault(_Signup);
+	var _Login2 = _interopRequireDefault(_Login);
 
 	var _Home = __webpack_require__(239);
 
@@ -21136,7 +21140,10 @@
 	  function App(props) {
 	    _classCallCheck(this, App);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
+
+	    _this.state = {};
+	    return _this;
 	  }
 
 	  _createClass(App, [{
@@ -21151,10 +21158,10 @@
 	          _react2.default.createElement(
 	            _reactRouter.Route,
 	            { path: '/', component: _Home.Home },
-	            _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _Home.About }),
+	            _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home.About }),
 	            _react2.default.createElement(_reactRouter.Route, { path: 'contact', component: _Home.Contact })
 	          ),
-	          _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _Signup2.default }),
+	          _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _Login2.default }),
 	          _react2.default.createElement(_reactRouter.Route, { path: 'notelist', component: _NoteList2.default })
 	        )
 	      );
@@ -21163,6 +21170,8 @@
 
 	  return App;
 	}(_react2.default.Component);
+
+	App.propTypes = {};
 
 	exports.default = App;
 
@@ -26885,39 +26894,7 @@
 	exports.HomeNav = HomeNav;
 
 /***/ },
-/* 238 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Navs = __webpack_require__(237);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Signup = function Signup(props) {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'h1',
-	      null,
-	      'Signup'
-	    ),
-	    _react2.default.createElement(_Navs.Nav, null)
-	  );
-	};
-
-	exports.default = Signup;
-
-/***/ },
+/* 238 */,
 /* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -26978,6 +26955,205 @@
 	exports.Home = Home;
 	exports.About = About;
 	exports.Contact = Contact;
+
+/***/ },
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(33);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _Navs = __webpack_require__(237);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	//define a mixin-like function to house user submit functionality
+	var UserFormMixin = function UserFormMixin(InnerComponent) {
+	  return function (_React$Component) {
+	    _inherits(_class, _React$Component);
+
+	    function _class() {
+	      _classCallCheck(this, _class);
+
+	      return _possibleConstructorReturn(this, Object.getPrototypeOf(_class).call(this));
+	    }
+
+	    _createClass(_class, [{
+	      key: 'submitUser',
+	      value: function submitUser(event) {
+	        event.preventDefault();
+	        var loginData = {
+	          username: _reactDom2.default.findDOMNode(this.refs.username).value,
+	          password: _reactDom2.default.findDOMNode(this.refs.password).value
+	        };
+	        console.log(loginData);
+	      }
+	    }, {
+	      key: 'render',
+	      value: function render() {
+	        return _react2.default.createElement(InnerComponent, _extends({}, this.state, this.props));
+	      }
+	    }]);
+
+	    return _class;
+	  }(_react2.default.Component);
+	};
+
+	//define a "login" inner-component
+
+	var Login = function (_React$Component2) {
+	  _inherits(Login, _React$Component2);
+
+	  function Login(props) {
+	    _classCallCheck(this, Login);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Login).call(this, props));
+	  }
+
+	  _createClass(Login, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this3 = this;
+
+	      return _react2.default.createElement(
+	        'form',
+	        null,
+	        _react2.default.createElement(
+	          'fieldset',
+	          null,
+	          _react2.default.createElement(
+	            'legend',
+	            null,
+	            'Login'
+	          ),
+	          'Username:',
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('input', { ref: 'username', onChange: this.props.updateSignup, type: 'text' }),
+	          _react2.default.createElement('br', null),
+	          'Password:',
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('input', { ref: 'password', onChange: this.props.updateSignup, type: 'password', name: 'password' }),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('input', { onClick: function onClick(event) {
+	              return _this3.submitUser(event);
+	            }, type: 'submit', value: 'Submit' })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Login;
+	}(_react2.default.Component);
+
+	//define a "signup" inner-component
+
+
+	var Signup = function (_React$Component3) {
+	  _inherits(Signup, _React$Component3);
+
+	  function Signup(props) {
+	    _classCallCheck(this, Signup);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Signup).call(this, props));
+	  }
+
+	  _createClass(Signup, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this5 = this;
+
+	      return _react2.default.createElement(
+	        'form',
+	        null,
+	        _react2.default.createElement(
+	          'fieldset',
+	          null,
+	          _react2.default.createElement(
+	            'legend',
+	            null,
+	            'Signup'
+	          ),
+	          'Username:',
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('input', { ref: 'username', onChange: this.props.updateSignup, type: 'text' }),
+	          _react2.default.createElement('br', null),
+	          'Password:',
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('input', { ref: 'password', onChange: this.props.updateSignup, type: 'password', name: 'password' }),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('input', { onClick: function onClick(event) {
+	              return _this5.submitUser(event);
+	            }, type: 'submit', value: 'Submit' })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Signup;
+	}(_react2.default.Component);
+
+	//enable shared functionality on both inner-components
+
+
+	var LoginForm = UserFormMixin(Login);
+	var SignupForm = UserFormMixin(Signup);
+
+	//render both components on an outer "wrapper" component
+
+	var UserWrapper = function (_React$Component4) {
+	  _inherits(UserWrapper, _React$Component4);
+
+	  function UserWrapper(props) {
+	    _classCallCheck(this, UserWrapper);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(UserWrapper).call(this, props));
+	  }
+
+	  _createClass(UserWrapper, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Login'
+	        ),
+	        _react2.default.createElement(_Navs.Nav, null),
+	        _react2.default.createElement(LoginForm, null),
+	        _react2.default.createElement(SignupForm, null)
+	      );
+	    }
+	  }]);
+
+	  return UserWrapper;
+	}(_react2.default.Component);
+
+	exports.default = UserWrapper;
 
 /***/ }
 /******/ ]);
