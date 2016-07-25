@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import {Nav} from './Navs';
 import {Link} from 'react-router';
 
-
 //define a mixin-like function to house user submit functionality
 let UserFormMixin =  InnerComponent => class extends React.Component {
   constructor () {
     super();
+    
   }
   submitUser (event) {
     event.preventDefault();

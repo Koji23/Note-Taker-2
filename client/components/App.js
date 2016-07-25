@@ -6,11 +6,19 @@ import {LoginForm, SignupForm} from './User';
 import {Home, About, Contact} from './Home';
 import NoteMaker from './NoteMaker';
 
+import io from 'socket.io-client';
+
+var socket = io('http://localhost:3000/');
 
 class App extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {};
+    this.state = {
+      // socket: io() //defaults to trying to connect to the host that serves the page
+    };
+    // this.state.socket.on('connect', function(data) {
+    //   this.state.socket.emit('join', 'Hello World from client');
+    // });
   }
 
   render () {

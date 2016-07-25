@@ -10,6 +10,7 @@
   "author": "jordan",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.7.1",
     "express": "^4.14.0",
     "nodemon": "^1.9.2",
     "path": "^0.12.7",
